@@ -21,18 +21,42 @@ from io import BytesIO
 
 from dotenv import load_dotenv
 
-# Load environment variables from .env file (if it exists)
-# This has no effect when variables are already set (e.g. on Streamlit Cloud)
+# Load environment variables from .env file (if it exists).
+# This has no effect when variables are already set (e.g. on Streamlit Cloud).
 load_dotenv()
 
+
+def _get_secret(key: str, default: str = "") -> str:
+    """
+    Read a configuration value from (in priority order):
+      1. Streamlit secrets  – used when running on Streamlit Community Cloud
+      2. Environment variables / .env file – used for local development
+      3. The provided default (empty string)
+
+    This lets the same code work both locally (with a .env file) and on
+    Streamlit Cloud (where secrets are set via the deployment UI).
+    """
+    # Try Streamlit secrets first (only available when running inside Streamlit)
+    try:
+        import streamlit as st
+        val = st.secrets.get(key, "")
+        if val:
+            return str(val)
+    except Exception:
+        # Streamlit is not running (e.g. during unit tests) — fall through
+        pass
+    # Fall back to environment variable
+    return os.getenv(key, default)
+
+
 # ---------------------------------------------------------------------------
-# CONFIGURATION  –  read from environment, never hardcoded
+# CONFIGURATION  –  read from Streamlit secrets or environment, never hardcoded
 # ---------------------------------------------------------------------------
 
-WATSONX_API_KEY         = os.getenv("WATSONX_API_KEY", "")
-WATSONX_PROJECT_ID      = os.getenv("WATSONX_PROJECT_ID", "")
-WATSONX_REGION          = os.getenv("WATSONX_REGION", "us-south")
-VISION_DEPLOYMENT_ID    = os.getenv("WATSONX_VISION_DEPLOYMENT_ID", "")
+WATSONX_API_KEY         = _get_secret("WATSONX_API_KEY")
+WATSONX_PROJECT_ID      = _get_secret("WATSONX_PROJECT_ID")
+WATSONX_REGION          = _get_secret("WATSONX_REGION", "us-south")
+VISION_DEPLOYMENT_ID    = _get_secret("WATSONX_VISION_DEPLOYMENT_ID")
 
 # The text model is a verified multitenant IBM Granite model.
 # It does not require a deployment – it can be called directly by model ID.

@@ -22,3 +22,6 @@ Thumbs.db
 # IDE config
 .vscode/
 .idea/
+
+# Streamlit secrets (local only - real values never committed)
+.streamlit/secrets.toml
