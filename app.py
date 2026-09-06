@@ -285,12 +285,6 @@ with tab2:
     )
 
     if not (API_KEY and PROJECT_ID):
-        # ── No credentials ────────────────────────────────────────────────────
-        st.info(
-            "ℹ️ **AI not configured.** IBM watsonx.ai credentials are not set.  \n"
-            "Add `WATSONX_API_KEY` and `WATSONX_PROJECT_ID` to your `.env` file "
-            "or Streamlit Cloud secrets to activate the assistant."
-        )
         st.markdown("**Example questions this assistant can answer:**")
         for q in STARTERS:
             st.markdown(f"- {q}")
