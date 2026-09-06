@@ -44,14 +44,6 @@ st.set_page_config(page_title="EcoTrack AI", page_icon="♻️", layout="wide")
 with st.sidebar:
     st.title("♻️ EcoTrack AI")
     st.caption("AI-Powered Campus Waste & Sustainability Assistant")
-    st.divider()
-    st.markdown(
-        "**1M1B AI for Sustainability Internship**  \n"
-        "IBM SkillsBuild × AICTE  \n"
-        "**SDG 12** – Responsible Consumption & Production"
-    )
-    st.divider()
-    st.caption("Built with IBM Granite · Streamlit · Pandas · Plotly")
 
 st.title("♻️ EcoTrack AI")
 st.caption("Campus Waste & Sustainability Assistant | SDG 12")
