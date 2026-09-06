@@ -2,265 +2,227 @@
 
 AI-Powered Campus Waste & Sustainability Assistant
 
-One short paragraph explaining what EcoTrack AI does.
+EcoTrack AI is a student-focused sustainability application that uses AI to help campus communities identify waste, understand proper disposal practices, and make more sustainable decisions.
 
 ---
 
 🎯 Problem Statement
 
-Use this exact problem statement:
-
 «How might we use AI to help students and campus communities identify, segregate, and understand waste so that campus waste management can become more sustainable?»
 
-Briefly explain:
+Students often face difficulty identifying different types of waste and understanding how to dispose of them correctly. At the same time, campus waste patterns can be difficult to understand without simple digital tools.
 
-- the campus waste problem
-- who is affected
-- why it matters
+EcoTrack AI aims to make waste awareness and sustainability guidance easier and more accessible.
 
 ---
 
 🌱 SDG Alignment
 
-Primary SDG: SDG 12 — Responsible Consumption and Production
+SDG 12 — Responsible Consumption and Production
 
-Briefly explain how EcoTrack AI supports SDG 12 through better waste identification, segregation awareness, sustainability education, and waste-reduction decisions.
+EcoTrack AI supports SDG 12 by encouraging:
+
+- Better waste identification
+- Proper waste segregation
+- Responsible disposal practices
+- Waste reduction awareness
+- Sustainability education
 
 ---
 
-🤖 Two Main AI Features
+🤖 Main Features
 
 1. 📷 AI Waste Analyzer
 
-Explain in 3–5 simple bullet points:
+The AI Waste Analyzer helps users understand what type of waste they are dealing with.
 
-- user uploads a waste image
-- IBM Granite Vision can analyze it when properly configured
-- provides an approximate waste category and disposal guidance
-- confidence/uncertainty is shown when available
-- Demo Mode is used when live Vision AI is unavailable
+How it works:
 
-Clearly state:
+1. Upload a waste image.
+2. IBM Granite Vision analyzes the image when live AI is configured.
+3. The application provides an approximate waste category.
+4. It provides practical disposal guidance.
+5. Confidence or uncertainty is shown when available.
 
-Demo Mode is not real AI inference.
+Waste categories include:
 
-2. 💬 AI Sustainability Assistant
+- 🧴 Plastic
+- 📦 Paper / Cardboard
+- 🍎 Food / Organic
+- 💻 E-Waste / Electronic
+- 🗑️ General Waste
 
-Explain in 3–5 simple bullet points:
-
-- student asks a sustainability/waste question
-- IBM Granite instruction model processes the question
-- provides concise practical guidance
-- live AI requires IBM watsonx.ai credentials
-- without credentials, the app clearly indicates that AI is unavailable
+«Note: When live Vision AI is unavailable, the application uses a clearly labelled Demo Mode. Demo Mode is not real AI inference.»
 
 ---
 
-🧩 Supporting Sections
+2. 💬 AI Sustainability Assistant
 
-Briefly explain:
+The AI Sustainability Assistant allows users to ask questions related to sustainability and waste management.
+
+Examples:
+
+- How should plastic bottles be disposed of?
+- How can I reduce waste in my hostel?
+- What is e-waste?
+- How can students reduce food waste?
+
+When configured, IBM Granite provides concise and practical sustainability guidance.
+
+«Note: Live AI responses require the appropriate IBM watsonx.ai configuration.»
+
+---
+
+🧩 Supporting Features
 
 🌱 Sustainability Impact Calculator
 
-A simple calculation tool that estimates potential waste avoided and related environmental indicators based on user inputs and configurable factors.
+The calculator provides estimated environmental impact indicators based on user inputs.
 
-Clearly state that these are estimates, not measured or certified environmental results.
+These results are estimates for educational purposes and are not measured or certified environmental results.
 
 📊 Waste Analytics
 
-Briefly explain the CSV-based waste analysis using Pandas and Plotly, if this functionality exists in the current code.
+The application can analyze sample campus waste data using data-processing and visualization tools.
 
-Clearly state that the included dataset is sample/demo data, not actual campus measurements.
+The included dataset is sample/demo data and does not represent actual campus measurements.
 
 ⚖️ Responsible AI
 
-Mention:
+EcoTrack AI considers:
 
-- Fairness
-- Transparency
-- Ethics
-- Privacy
-- Limitations and uncertainty
-
-Keep this section short.
+- Fairness — Avoiding unnecessary assumptions about users.
+- Transparency — Clearly identifying AI-generated results.
+- Ethics — Avoiding fabricated statistics and unsupported claims.
+- Privacy — Avoiding unnecessary collection of personal information.
+- Limitations — Recognizing that AI-generated results may be incorrect.
 
 ---
 
 🔄 How It Works
 
-Use a simple architecture:
-
-User
-↓
-EcoTrack AI — Streamlit
-↓
-├── Waste Image → IBM Granite Vision
-├── Sustainability Question → IBM Granite
-├── Waste CSV → Pandas → Plotly
-└── Reduction Input → Impact Calculator
-↓
-Sustainability Guidance
-
-Only include components that actually exist in the code.
+              User
+                ↓
+        ┌─────────────────┐
+        │   EcoTrack AI   │
+        │    Streamlit    │
+        └─────────────────┘
+                ↓
+      ┌─────────┼─────────┐
+      ↓         ↓         ↓
+ Waste Image  Questions  Waste Data
+      ↓         ↓         ↓
+ IBM Granite  IBM Granite  Pandas
+   Vision       AI         + Plotly
+      ↓         ↓         ↓
+      └─────────┼─────────┘
+                ↓
+      Sustainability Guidance
 
 ---
 
 🛠️ Technology Stack
 
-Use a short table:
-
 Technology| Purpose
-Python| Application logic
+Python| Application development
 Streamlit| Web interface
-IBM Granite| AI assistance
+IBM Granite| AI capabilities
 IBM watsonx.ai| AI model access
 Pandas| Data processing
 Plotly| Data visualization
-Pillow| Image handling
-
-Only include technologies actually used by the current project.
+Pillow| Image processing
 
 ---
 
 📁 Project Structure
 
-Show the ACTUAL current project structure.
-
-Do not say the project is a single-file application if folders/modules actually exist.
-
-Do not omit important existing folders.
+EcoTrack-AI/
+│
+├── app.py
+├── data/
+│   └── sample_campus_waste.csv
+│
+├── .streamlit/
+│   ├── config.toml
+│   └── secrets.toml.example
+│
+├── .env.example
+├── .gitignore
+├── requirements.txt
+└── README.md
 
 ---
 
 ▶️ Run Locally
 
-Keep this very short:
+Clone the repository and install the required packages:
 
 pip install -r requirements.txt
+
+Run the application:
+
 streamlit run app.py
 
-Explain in one sentence that the application can launch without IBM credentials, while live AI functionality requires appropriate watsonx.ai credentials.
+The application can be opened locally in a web browser.
 
 ---
 
 🔐 AI Configuration
 
-Briefly explain:
+For local AI functionality:
 
-- use ".env.example" as the template for local configuration
-- never commit ".env"
-- live text AI requires IBM watsonx.ai credentials
-- live Vision AI requires the appropriate Vision deployment/configuration
-- without Vision configuration, the app uses clearly labelled Demo Mode
+1. Use ".env.example" as a configuration reference.
+2. Add your IBM watsonx.ai credentials securely.
+3. Never commit real credentials or API keys to GitHub.
+4. Live AI functionality depends on the required IBM model configuration.
 
-Do NOT put real credentials anywhere in README.md.
-
----
-
-🧠 Responsible AI
-
-Give a concise list:
-
-- Fairness: avoids assumptions about users.
-- Transparency: AI-generated responses are clearly identified.
-- Ethics: avoids fabricated statistics and unsupported claims.
-- Privacy: no login or unnecessary personal-data collection.
-- Limitations: AI results can be wrong and should be verified when necessary.
-
-Only make claims supported by the actual implementation.
+If live Vision AI is unavailable, the application clearly uses Demo Mode instead of pretending that an AI prediction was made.
 
 ---
 
 📌 Limitations
 
-Use a short bullet list:
-
-- AI responses may contain errors.
+- AI-generated responses may contain errors.
 - Image classification is approximate.
 - Demo Mode is not real AI inference.
-- Sample data is for demonstration.
-- Impact calculations are estimates.
-- Official campus waste-management guidance should be followed where applicable.
+- The included dataset is sample data.
+- Environmental impact calculations are estimates.
+- Official campus waste-management instructions should be followed where applicable.
 
 ---
 
 🚀 Future Improvements
 
-Keep this to 3–4 realistic ideas:
+Possible future improvements include:
 
-- use real campus waste data
-- improve waste-image recognition
-- add campus-specific disposal guidance
-- improve long-term waste tracking
-
-Do not describe future features as currently available.
+- Using real campus waste data
+- Improving waste-image recognition
+- Adding campus-specific disposal guidance
+- Adding long-term waste tracking and reporting
 
 ---
 
 🤝 IBM Bob
 
-Briefly explain how IBM Bob was used during the project.
+IBM Bob was used during the project development process for activities such as:
 
-Mention ONLY activities that actually happened, such as:
+- Project planning
+- Application design
+- Implementation assistance
+- Testing and refinement
 
-- project planning
-- architecture/design
-- implementation assistance
-- testing and refinement
-
-Do not exaggerate IBM Bob's role.
+The project was developed with a focus on keeping the solution simple, practical, and understandable for students.
 
 ---
 
 📚 1M1B Relevance
 
-Write one short paragraph explaining that the project:
+EcoTrack AI addresses a real-world campus sustainability problem and aligns with SDG 12 — Responsible Consumption and Production.
 
-- addresses a real-world campus sustainability problem
-- aligns with SDG 12
-- uses AI responsibly
-- demonstrates a working prototype
-- focuses on practical sustainability impact
-
-Do not claim that Streamlit deployment is a mandatory 1M1B requirement.
+The project demonstrates how AI can support waste awareness, responsible disposal, and sustainability education while considering transparency, privacy, ethics, and AI limitations.
 
 ---
 
 📄 License
 
-Keep the existing educational-project license statement if accurate.
-
----
-
-FINAL README STYLE
-
-Make the README:
-
-- clean
-- professional
-- visually readable
-- concise
-- suitable for a college student project
-- easy for an evaluator to understand
-- approximately 800–1200 words maximum
-
-Use headings, short paragraphs, and bullet points.
-
-Do NOT add:
-
-- badges unless already present
-- unnecessary emojis
-- lengthy interview questions
-- complicated architecture
-- excessive API documentation
-- detailed IBM pricing/free-tier claims
-- unnecessary external links
-- marketing language
-
-After updating README.md:
-
-1. Compare every statement against the current code.
-2. Confirm the README accurately represents the current application.
-3. Do not modify any other file.
-4. Show me the final README content for review.
-5. Do NOT commit or push to GitHub yet.
+This project is developed as an educational sustainability project for the 1M1B AI for Sustainability Virtual Internship.
