@@ -425,7 +425,4 @@ with tab2:
 **Privacy** — No login required. Uploaded images are processed in memory only and never saved to disk. Session data is cleared when the browser is closed.
 
 **Limitations and Uncertainty** — AI can produce incorrect or outdated information. Waste classification may fail on unusual items. Impact calculations are rough estimates, not certified measurements. Always verify suggestions with campus facilities staff.
-
----
-*1M1B AI for Sustainability Virtual Internship | IBM SkillsBuild × AICTE | SDG 12*
         """)
