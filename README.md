@@ -1,35 +1,85 @@
-# EcoTrack AI – README
-# =====================================================================
-# AI-Powered Campus Waste & Sustainability Assistant
-# 1M1B AI for Sustainability Virtual Internship
-# IBM SkillsBuild × AICTE  |  SDG 12 – Responsible Consumption and Production
-# =====================================================================
-
-# README.md
-
-## EcoTrack AI 🌱
+# ♻️ EcoTrack AI
 
 **AI-Powered Campus Waste & Sustainability Assistant**
 
-A beginner-friendly student project built for the [1M1B AI for Sustainability
-Virtual Internship](https://www.1m1b.com) in collaboration with IBM SkillsBuild
-and AICTE.
+> *How might we use AI to help students and campus communities identify, segregate,
+> and understand waste so that campus waste management becomes more sustainable?*
 
-**Primary SDG:** SDG 12 – Responsible Consumption and Production  
-**AI Platform:** IBM watsonx.ai (IBM Granite foundation models)  
-**UI Framework:** Streamlit (Python)
+**Primary SDG:** SDG 12 – Responsible Consumption and Production
+**Internship:** 1M1B AI for Sustainability Virtual Internship | IBM SkillsBuild × AICTE
+**AI Platform:** IBM watsonx.ai (IBM Granite foundation models)
+**UI:** Streamlit (Python) — single file, beginner-friendly
 
 ---
 
-## What the App Does
+## Two Main AI Features
 
-| Tab | Feature | AI Used? |
-|-----|---------|----------|
-| 📷 Waste Analyzer | Upload an image and get a waste category + disposal tip | Yes (Granite Vision, optional) |
-| 📊 Analytics Dashboard | Upload a campus waste CSV and see KPI metrics and charts | Optional (AI insight summary) |
-| 🤖 AI Assistant | Ask sustainability and waste management questions | Yes (Granite text model) |
-| 🌱 Impact Calculator | Estimate CO₂/water savings from waste reduction | No (formula-based) |
-| ⚖️ Responsible AI | Fairness, transparency, ethics, and privacy statement | No |
+### 1. 📷 AI Waste Analyzer
+
+The primary feature.
+
+- User uploads a JPG or PNG photo of any waste item
+- **When IBM Granite Vision is configured:** the image is sent to the
+  `granite-vision-3-2-2b` deploy-on-demand model on watsonx.ai, which
+  identifies the waste category, confidence level, reasoning, and a disposal tip
+- **When Vision AI is not configured:** Demo Mode is shown — user selects
+  from 5 predefined example items to see how results look. Demo Mode is
+  clearly labelled and never claims to be real AI inference
+- A colour-coded Waste Category Guide is shown below the analyzer
+
+Waste categories recognised: **Plastic, Paper/Cardboard, Food/Organic,
+E-Waste/Electronic, General Waste**
+
+### 2. 🤖 AI Sustainability Assistant
+
+The second main feature.
+
+- Student types any question about campus waste, recycling, or sustainability
+- Question is sent to IBM Granite (`ibm/granite-3-3-8b-instruct`) on
+  watsonx.ai Runtime (Lite plan: 300,000 tokens/month free)
+- Model replies with a concise, practical answer
+- Every AI response is labelled with the model name
+- If credentials are not configured, the tab shows a clear
+  "AI not configured" message — it never pretends a response was generated
+
+Example questions:
+- How do I dispose of a plastic bottle on campus?
+- How can students reduce waste on campus?
+- What is SDG 12?
+- How can our cafeteria reduce food waste?
+- Why is e-waste dangerous in regular bins?
+
+---
+
+## Supporting Sections
+
+These are not additional AI features. They support and complement the two
+main features above.
+
+### 🌱 Sustainability Impact Calculator
+
+A simple arithmetic calculator — no AI involved.
+
+- User selects a waste type and enters a weekly quantity and reduction target
+- App calculates: waste avoided (kg), estimated CO₂ saved, estimated water saved,
+  tree-years equivalent
+- All results are clearly labelled as **rough estimates** based on:
+  - WRAP UK (2022) for plastic
+  - US EPA WARM v16 (2021) for paper
+  - IPCC AR6 WG3 (2022) for food
+- Results are not certified measurements and should not be used for official reporting
+
+### ⚖️ Responsible AI
+
+A collapsible section covering the five mandatory Responsible AI principles:
+
+| Principle | What was done |
+|---|---|
+| Fairness | Plain language, no assumptions about user background |
+| Transparency | AI responses labelled with model name; Demo Mode labelled as non-AI |
+| Ethics | AI instructed not to fabricate stats; impact factors have cited sources |
+| Privacy | No login; images processed in memory only; no data stored |
+| Limitations | AI can be wrong; estimates are not measurements; verify with facilities staff |
 
 ---
 
@@ -37,209 +87,148 @@ and AICTE.
 
 ```
 EcoTrack-AI/
-├── app.py                       # Entry point – run this file
-├── pages/
-│   ├── waste_classifier.py      # Tab 1 – image classification
-│   ├── csv_analytics.py         # Tab 2 – analytics dashboard
-│   ├── ai_assistant.py          # Tab 3 – chat assistant
-│   ├── impact_calculator.py     # Tab 4 – impact calculator
-│   └── responsible_ai.py        # Tab 5 – responsible AI page
-├── utils/
-│   ├── watsonx_client.py        # IBM watsonx.ai API wrapper
-│   ├── waste_categories.py      # Categories, tips, prompts
-│   └── impact_formulas.py       # CO₂ estimate formulas (with sources)
+├── app.py                        ← entire application in one file
 ├── data/
-│   └── sample_campus_waste.csv  # 100-row demo dataset
-├── .env.example                 # Credential template
-├── requirements.txt             # Python dependencies
-└── README.md                    # This file
+│   └── sample_campus_waste.csv   ← bundled demo dataset (not real campus data)
+├── .streamlit/
+│   ├── config.toml               ← Streamlit server config
+│   └── secrets.toml.example      ← credential key template
+├── .env.example                  ← credential template for local use
+├── requirements.txt              ← Python dependencies
+└── README.md                     ← this file
 ```
+
+Everything is in a single `app.py` — no separate modules, no pages folder.
+A beginner can read the entire app from top to bottom in one sitting.
 
 ---
 
 ## Setup Instructions
 
-### Step 1 – Clone or download the project
-
-```bash
-git clone https://github.com/your-username/EcoTrack-AI.git
-cd EcoTrack-AI
-```
-
-### Step 2 – Create a Python virtual environment (recommended)
-
-```bash
-python -m venv venv
-
-# On Windows:
-venv\Scripts\activate
-
-# On Mac/Linux:
-source venv/bin/activate
-```
-
-### Step 3 – Install dependencies
+### Step 1 — Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Step 4 – Configure IBM watsonx.ai credentials
-
-Copy the template and fill in your real values:
+### Step 2 — Configure credentials
 
 ```bash
 cp .env.example .env
 ```
 
-Then open `.env` in a text editor and fill in:
+Open `.env` and fill in your values:
 
 ```
 WATSONX_API_KEY=your_ibm_cloud_api_key
 WATSONX_PROJECT_ID=your_watsonx_project_id
 WATSONX_REGION=us-south
-WATSONX_VISION_DEPLOYMENT_ID=   # optional – see below
+WATSONX_VISION_DEPLOYMENT_ID=        # optional — leave blank to use Demo Mode
 ```
 
-**How to get your credentials:**
-
+**How to get credentials:**
 1. Create a free IBM Cloud account at https://cloud.ibm.com
-2. Go to **Catalog → AI / Machine Learning → watsonx.ai Studio** and create a Lite instance
-3. Inside watsonx.ai Studio, create a new **Project**
-4. Copy the **Project ID** from the project settings page
-5. Go to **Manage → Access (IAM) → API Keys** and create an API key
-6. Paste both into your `.env` file
+2. Create a watsonx.ai Studio instance (Lite plan — free)
+3. Create a project → copy the **Project ID** from project settings
+4. Go to Manage → Access (IAM) → API Keys → create an API key
 
-**Free tier limits (IBM Lite plan):**
-- 300,000 tokens/month for text generation (watsonx.ai Runtime)
-- 10 CUH/month on watsonx.ai Studio
-- This is more than enough for a student demo project
+**Free tier:** 300,000 tokens/month for text generation (watsonx.ai Runtime Lite)
 
-### Step 5 – Run the app
+### Step 3 — Run
 
 ```bash
 streamlit run app.py
 ```
 
-Open your browser at http://localhost:8501
+App opens at http://localhost:8501
 
 ---
 
-## Enabling Vision AI (Tab 1 – AI Mode)
+## What Works Without Credentials
 
-The Granite Vision model (`ibm/granite-vision-3-2-2b`) requires a separate
-**deploy-on-demand** deployment. It is not available on the Lite multitenant plan.
+| Feature | Without credentials |
+|---|---|
+| Waste Category Guide | ✅ Always works |
+| Waste Analyzer — Demo Mode | ✅ Always works (clearly labelled) |
+| Impact Calculator | ✅ Always works |
+| Responsible AI section | ✅ Always works |
+| AI Assistant | ❌ Shows "AI not configured" message |
+| Waste Analyzer — real AI | ❌ Falls back to Demo Mode |
 
-If you do not configure this, **Tab 1 automatically uses Demo Mode** — clearly
-labelled pre-canned examples. The rest of the app works normally.
+---
 
-**To enable Vision AI:**
+## Enabling Vision AI
 
-1. In watsonx.ai Studio, go to **Deployments → New Deployment**
-2. Select the `granite-vision-3-2-2b` model
-3. Choose **"Deploy on demand"**
-4. Copy the Deployment ID
-5. Add it to your `.env` file:
+The Granite Vision model (`ibm/granite-vision-3-2-2b`) requires a
+**deploy-on-demand** deployment in watsonx.ai Studio. It is not available
+on the Lite multitenant plan and incurs an hourly charge while running.
+
+If `WATSONX_VISION_DEPLOYMENT_ID` is not set, the app automatically uses
+Demo Mode — no crash, no error.
+
+---
+
+## Deploying to Streamlit Community Cloud (Free)
+
+1. Push to GitHub
+2. Go to https://share.streamlit.io → sign in → Create app
+3. Set: Repository = this repo, Branch = `main`, Main file = `app.py`
+4. Go to Settings → Secrets and add:
+   ```toml
+   WATSONX_API_KEY = "your_key"
+   WATSONX_PROJECT_ID = "your_project_id"
+   WATSONX_REGION = "us-south"
+   WATSONX_VISION_DEPLOYMENT_ID = ""
    ```
-   WATSONX_VISION_DEPLOYMENT_ID=your_deployment_id
-   ```
-
-Note: Deploy-on-demand models incur hourly charges while deployed.
-Stop the deployment when you are not using it to avoid costs.
+5. Click Deploy
 
 ---
 
-## CSV Format for Tab 2
-
-The analytics dashboard expects a CSV with these columns:
-
-| Column | Type | Example |
-|--------|------|---------|
-| `date` | YYYY-MM-DD | 2024-01-08 |
-| `location` | text | Cafeteria |
-| `waste_type` | text | plastic, paper, food, e-waste, general |
-| `weight_kg` | number | 4.2 |
-| `disposed_correctly` | True/False | True |
-
-A sample dataset is included at `data/sample_campus_waste.csv`.
-Click **"Load sample data"** in Tab 2 to use it immediately.
-
----
-
-## Deployment to Streamlit Community Cloud (Free)
-
-1. Push your code to a GitHub repository
-2. Go to https://share.streamlit.io and sign in with GitHub
-3. Select your repository and set the main file to `app.py`
-4. Add your secrets in **Settings → Secrets** (same key-value pairs as `.env`)
-5. Click **Deploy**
-
-**Important:** Never commit your `.env` file to GitHub.
-Add `.env` to `.gitignore`:
-```
-echo ".env" >> .gitignore
-```
-
----
-
-## How to Explain This Project in an Interview
+## Interview Explanation
 
 **What problem does it solve?**
-Campus students and staff generate different types of waste but often lack awareness
-about correct segregation, waste patterns, and how to reduce consumption.
-EcoTrack AI provides a simple, accessible tool to classify waste, visualise patterns,
-and get practical sustainability guidance.
+Students and campus communities may not always know how to identify, segregate,
+and manage waste correctly. EcoTrack AI provides a simple tool to classify waste
+from photos and answer sustainability questions using IBM Granite AI.
+
+**What are the two main features?**
+1. AI Waste Analyzer — upload a photo, get the waste category and disposal tip
+2. AI Sustainability Assistant — ask any sustainability question, get a practical answer
 
 **Why AI and not just regular software?**
-A rule-based system can only handle a fixed list of inputs. AI (IBM Granite) can
-interpret open-ended questions, reason about visual content (images), and summarise
-patterns in natural language — things rule-based code cannot do reliably.
+A rule-based system handles only a fixed list of inputs. IBM Granite can reason
+about images, interpret open-ended natural language questions, and give contextual
+answers — things rule-based code cannot do reliably.
 
 **What IBM technology did you use?**
-- `ibm/granite-3-3-8b-instruct` — IBM Granite 3.3 instruction-following model for
-  the chat assistant and CSV insight summary
-- `ibm/granite-vision-3-2-2b` — IBM Granite Vision for image-to-text classification
-  (deploy-on-demand)
+- `ibm/granite-3-3-8b-instruct` — IBM Granite 3.3, multitenant on watsonx.ai Runtime
+- `ibm/granite-vision-3-2-2b` — IBM Granite Vision, deploy-on-demand
 - IBM watsonx.ai REST API and Python SDK (`ibm-watsonx-ai`)
 
 **How does it connect to SDG 12?**
-SDG 12 targets responsible consumption and production. This app directly supports:
-- Target 12.4: Responsible waste management (Waste Classifier)
-- Target 12.5: Reducing waste generation (Impact Calculator)
-- Target 12.6: Sustainability reporting (Analytics Dashboard)
-- Target 12.8: Access to sustainability information (AI Assistant)
+SDG 12 targets responsible consumption and production. This app helps students
+identify waste correctly (reduce wrong disposal), understand sustainability (behaviour
+change), and estimate the impact of waste reduction choices.
 
 **What responsible AI considerations did you include?**
-The app covers fairness (accessible language, stated limitations), transparency
-(all AI responses are labelled), ethics (no fabricated statistics, no data storage),
-and privacy (no login, images processed in-memory only, no data retained).
-
----
-
-## Responsible AI Summary
-
-| Principle | Implementation |
-|-----------|---------------|
-| Fairness | Plain language, stated accuracy limitations, no assumptions about user background |
-| Transparency | Every AI response is labelled with model name; Demo Mode is clearly marked |
-| Ethics | AI instructed not to fabricate stats; impact factors include sources |
-| Privacy | No login, no storage, no tracking; images never saved to disk |
-| Limitations | Listed explicitly in Tab 5 (Responsible AI) |
+Fairness, transparency, ethics, privacy, and limitations — all covered in the
+Responsible AI section of the app. Demo Mode is never presented as real AI.
+Impact estimates include their published sources. No data is stored.
 
 ---
 
 ## Sources for Impact Factors
 
-- WRAP UK (2022) – *Plastic: Material Overview* https://wrap.org.uk
-- US EPA (2021) – *Waste Reduction Model (WARM) v16* https://www.epa.gov/warm
-- IPCC AR6 WG3 (2022) – *Chapter 7: Agriculture, Forestry, Land Use* https://www.ipcc.ch/report/ar6/wg3/
-- US Forest Service – Urban tree CO₂ absorption averages
+- WRAP UK (2022) — Plastics Market Situation Report
+- US EPA WARM v16 (2021) — Waste Reduction Model
+- IPCC AR6 WG3 (2022) — Chapter 7: Agriculture, Forestry, Land Use
+- US Forest Service — urban tree CO₂ absorption averages (~21 kg/tree/year)
 
-All factors are configurable in `utils/impact_formulas.py`.
+All factors are configurable in `app.py` under `IMPACT_FACTORS`.
 
 ---
 
 ## License
 
-This project is for educational purposes as part of the 1M1B AI for Sustainability
-Virtual Internship. You are free to use, modify, and learn from this code.
+Educational project for the 1M1B AI for Sustainability Virtual Internship.
+Free to use, modify, and learn from.

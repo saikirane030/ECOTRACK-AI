@@ -1,7 +1,18 @@
 """
 EcoTrack AI – AI-Powered Campus Waste & Sustainability Assistant
-1M1B AI for Sustainability Virtual Internship
-IBM SkillsBuild x AICTE | SDG 12 – Responsible Consumption and Production
+================================================================
+Problem: Students and campus communities may not always know how to identify,
+segregate, and manage waste correctly.
+
+SDG 12 – Responsible Consumption and Production
+
+Two main AI features:
+  1. AI Waste Analyzer  – identify waste from a photo, get disposal guidance
+  2. AI Sustainability Assistant – ask any waste or sustainability question
+
+Supporting sections:
+  - Sustainability Impact Calculator
+  - Responsible AI
 
 Run:  streamlit run app.py
 """
@@ -46,7 +57,10 @@ with st.sidebar:
     st.caption("AI-Powered Campus Waste & Sustainability Assistant")
 
 st.title("♻️ EcoTrack AI")
-st.caption("Campus Waste & Sustainability Assistant | SDG 12")
+st.caption(
+    "How might we use AI to help students identify, segregate, and understand waste "
+    "so that campus waste management becomes more sustainable? | SDG 12"
+)
 
 tab1, tab2 = st.tabs(["📷 Waste Analyzer", "🤖 AI Assistant"])
 
@@ -136,10 +150,13 @@ def show_category(cat_key, tip_override=""):
 # ═══════════════════════════════════════════════════════════════════════════════
 
 with tab1:
-    st.subheader("📷 Waste Image Analyzer")
-    st.markdown("Upload a photo of any waste item to find out its category and how to dispose of it.")
+    st.subheader("📷 Main Feature 1 — AI Waste Analyzer")
+    st.markdown(
+        "Upload a photo of any waste item. "
+        "The app identifies its category and tells you how to dispose of it correctly."
+    )
 
-    uploaded = st.file_uploader("Choose an image", type=["jpg", "jpeg", "png"])
+    uploaded = st.file_uploader("Choose a waste image (JPG or PNG)", type=["jpg", "jpeg", "png"])
 
     if uploaded:
         col_img, col_result = st.columns([1, 2])
@@ -204,6 +221,11 @@ with tab1:
                         st.error(f"Could not analyse the image: {e}")
 
             else:
+                # Demo Mode – Vision AI not configured
+                st.caption(
+                    "🔶 Demo Mode — IBM Granite Vision is not configured. "
+                    "Select a predefined example below. This is not real AI inference."
+                )
                 idx = st.selectbox(
                     "Select an example waste item",
                     range(len(DEMO_EXAMPLES)),
@@ -241,6 +263,7 @@ SYSTEM_PROMPT = (
 
 STARTERS = [
     "How do I dispose of a plastic bottle on campus?",
+    "How can students reduce waste on campus?",
     "What is SDG 12?",
     "How can our cafeteria reduce food waste?",
     "Why is e-waste dangerous in regular bins?",
@@ -255,17 +278,20 @@ IMPACT_FACTORS = {
 }
 
 with tab2:
-    st.subheader("🤖 AI Sustainability Assistant")
+    st.subheader("🤖 Main Feature 2 — AI Sustainability Assistant")
+    st.markdown(
+        "Ask any question about campus waste management, recycling, or sustainability. "
+        "Powered by IBM Granite on watsonx.ai."
+    )
 
     if not (API_KEY and PROJECT_ID):
-        # ── No credentials – show a friendly placeholder ──────────────────────
-        st.markdown(
-            "Ask any question about campus waste, recycling, or sustainability.  \n"
-            "_AI responses require IBM watsonx.ai credentials. "
-            "Add them to your `.env` file or Streamlit secrets to activate._"
+        # ── No credentials ────────────────────────────────────────────────────
+        st.info(
+            "ℹ️ **AI not configured.** IBM watsonx.ai credentials are not set.  \n"
+            "Add `WATSONX_API_KEY` and `WATSONX_PROJECT_ID` to your `.env` file "
+            "or Streamlit Cloud secrets to activate the assistant."
         )
-        st.divider()
-        st.markdown("**Example questions you could ask:**")
+        st.markdown("**Example questions this assistant can answer:**")
         for q in STARTERS:
             st.markdown(f"- {q}")
 
@@ -334,10 +360,13 @@ with tab2:
             st.session_state.pop("chat", None)
             st.rerun()
 
-    # ── Impact Calculator ─────────────────────────────────────────────────────
+    # ── Supporting Section: Impact Calculator ────────────────────────────────
     st.divider()
-    st.subheader("🌱 Sustainability Impact Calculator")
-    st.caption("Estimate the environmental benefit of reducing campus waste.")
+    st.subheader("🌱 Supporting Section — Sustainability Impact Calculator")
+    st.caption(
+        "Enter a waste quantity and a reduction target to see a rough estimate "
+        "of the environmental benefit."
+    )
     st.info(
         "⚠️ All results are **rough estimates** based on published studies "
         "(WRAP UK, US EPA WARM, IPCC AR6). Not for certified reporting."
@@ -389,19 +418,19 @@ with tab2:
     else:
         st.markdown("Enter a waste quantity above to see results.")
 
-    # ── Responsible AI ────────────────────────────────────────────────────────
+    # ── Supporting Section: Responsible AI ───────────────────────────────────
     st.divider()
-    with st.expander("⚖️ Responsible AI"):
+    with st.expander("⚖️ Supporting Section — Responsible AI"):
         st.markdown("""
-**Fairness** — Plain language used throughout. No assumptions about user background. English-only limitation noted.
+**Fairness** — Plain language throughout. No assumptions about user background. English-only limitation acknowledged.
 
-**Transparency** — Every AI response shows the model name. Demo Mode is always clearly labelled as non-AI.
+**Transparency** — Every AI response is labelled with the model name (`ibm/granite-3-3-8b-instruct`). Demo Mode is always labelled as non-AI inference, never presented as a real result.
 
-**Ethics** — The AI is instructed not to invent statistics. Impact factors are estimates with cited sources. No data is stored or shared.
+**Ethics** — The AI assistant is instructed not to fabricate statistics. Impact factors are published estimates with cited sources. No user data is stored or shared.
 
-**Privacy** — No login required. Uploaded images are processed in memory only and never saved to disk. Session data is cleared when you close the browser.
+**Privacy** — No login required. Uploaded images are processed in memory only and never saved to disk. Session data is cleared when the browser is closed.
 
-**Limitations** — AI can be wrong. Waste classification may fail on unusual items. Always check with campus facilities staff before acting on suggestions.
+**Limitations and Uncertainty** — AI can produce incorrect or outdated information. Waste classification may fail on unusual items. Impact calculations are rough estimates, not certified measurements. Always verify suggestions with campus facilities staff.
 
 ---
 *1M1B AI for Sustainability Virtual Internship | IBM SkillsBuild × AICTE | SDG 12*
