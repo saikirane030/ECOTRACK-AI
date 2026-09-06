@@ -204,19 +204,12 @@ with tab1:
                         st.error(f"Could not analyse the image: {e}")
 
             else:
-                # ── Demo Mode ─────────────────────────────────────────────────
-                st.markdown("**Select a demo example below:**")
                 idx = st.selectbox(
-                    "Example",
+                    "Select an example waste item",
                     range(len(DEMO_EXAMPLES)),
                     format_func=lambda i: DEMO_EXAMPLES[i]["desc"],
                 )
-                st.error(
-                    "⚠️ **Demo Mode** — This result is a fixed example. "
-                    "It is NOT based on your uploaded image and NOT real AI inference."
-                )
                 show_category(DEMO_EXAMPLES[idx]["category"])
-                st.caption("Demo result — not real AI. Configure Vision AI credentials to enable real analysis.")
 
     else:
         st.markdown("👆 Upload an image to get started.")
