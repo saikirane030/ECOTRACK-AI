@@ -1,0 +1,101 @@
+date,location,waste_type,weight_kg,disposed_correctly
+2024-01-08,Cafeteria,food,4.2,True
+2024-01-08,Cafeteria,plastic,1.1,True
+2024-01-08,Library,paper,2.3,True
+2024-01-08,Lab Block,e-waste,0.5,True
+2024-01-08,Hostel A,plastic,0.8,False
+2024-01-09,Cafeteria,food,5.1,True
+2024-01-09,Cafeteria,paper,1.4,True
+2024-01-09,Sports Ground,general,2.0,False
+2024-01-09,Library,plastic,0.6,True
+2024-01-09,Admin Block,paper,1.8,True
+2024-01-10,Cafeteria,food,3.9,True
+2024-01-10,Hostel B,plastic,1.2,False
+2024-01-10,Lab Block,e-waste,0.3,True
+2024-01-10,Classroom Block,paper,3.1,True
+2024-01-10,Cafeteria,plastic,0.9,True
+2024-01-11,Cafeteria,food,4.7,True
+2024-01-11,Library,paper,2.0,True
+2024-01-11,Sports Ground,plastic,1.5,False
+2024-01-11,Hostel A,food,1.8,True
+2024-01-11,Admin Block,general,0.7,False
+2024-01-12,Cafeteria,food,5.5,True
+2024-01-12,Cafeteria,paper,1.1,True
+2024-01-12,Lab Block,e-waste,0.8,True
+2024-01-12,Hostel B,plastic,1.0,True
+2024-01-12,Classroom Block,general,0.9,False
+2024-01-15,Cafeteria,food,4.4,True
+2024-01-15,Library,paper,1.7,True
+2024-01-15,Hostel A,plastic,1.3,False
+2024-01-15,Sports Ground,general,1.6,False
+2024-01-15,Admin Block,paper,2.2,True
+2024-01-16,Cafeteria,food,3.8,True
+2024-01-16,Cafeteria,plastic,1.0,True
+2024-01-16,Lab Block,e-waste,0.4,True
+2024-01-16,Classroom Block,paper,2.8,True
+2024-01-16,Hostel B,food,2.1,True
+2024-01-17,Cafeteria,food,5.0,True
+2024-01-17,Library,paper,1.5,True
+2024-01-17,Sports Ground,plastic,0.7,False
+2024-01-17,Hostel A,general,1.1,False
+2024-01-17,Admin Block,paper,1.9,True
+2024-01-18,Cafeteria,food,4.6,True
+2024-01-18,Cafeteria,paper,1.2,True
+2024-01-18,Lab Block,e-waste,0.6,True
+2024-01-18,Hostel B,plastic,0.9,True
+2024-01-18,Classroom Block,food,1.4,True
+2024-01-19,Cafeteria,food,5.3,True
+2024-01-19,Library,paper,2.1,True
+2024-01-19,Sports Ground,general,1.8,False
+2024-01-19,Hostel A,plastic,1.1,False
+2024-01-19,Admin Block,general,0.8,False
+2024-01-22,Cafeteria,food,4.1,True
+2024-01-22,Cafeteria,plastic,1.4,True
+2024-01-22,Lab Block,e-waste,0.5,True
+2024-01-22,Classroom Block,paper,2.6,True
+2024-01-22,Hostel B,food,1.9,True
+2024-01-23,Cafeteria,food,3.7,True
+2024-01-23,Library,paper,1.8,True
+2024-01-23,Sports Ground,plastic,0.8,False
+2024-01-23,Hostel A,general,1.3,False
+2024-01-23,Admin Block,paper,2.0,True
+2024-01-24,Cafeteria,food,5.2,True
+2024-01-24,Cafeteria,paper,1.3,True
+2024-01-24,Lab Block,e-waste,0.7,True
+2024-01-24,Hostel B,plastic,1.0,True
+2024-01-24,Classroom Block,general,1.0,False
+2024-01-25,Cafeteria,food,4.8,True
+2024-01-25,Library,paper,1.6,True
+2024-01-25,Sports Ground,food,2.2,False
+2024-01-25,Hostel A,plastic,1.2,False
+2024-01-25,Admin Block,paper,1.7,True
+2024-01-26,Cafeteria,food,4.3,True
+2024-01-26,Cafeteria,plastic,0.9,True
+2024-01-26,Lab Block,e-waste,0.4,True
+2024-01-26,Classroom Block,paper,2.4,True
+2024-01-26,Hostel B,food,2.3,True
+2024-01-29,Cafeteria,food,3.5,True
+2024-01-29,Library,paper,2.2,True
+2024-01-29,Sports Ground,general,1.4,False
+2024-01-29,Hostel A,plastic,1.0,False
+2024-01-29,Admin Block,general,0.6,False
+2024-01-30,Cafeteria,food,5.6,True
+2024-01-30,Cafeteria,paper,1.5,True
+2024-01-30,Lab Block,e-waste,0.9,True
+2024-01-30,Hostel B,plastic,1.1,True
+2024-01-30,Classroom Block,food,1.6,True
+2024-01-31,Cafeteria,food,4.5,True
+2024-01-31,Library,paper,1.9,True
+2024-01-31,Sports Ground,plastic,0.6,False
+2024-01-31,Hostel A,general,1.5,False
+2024-01-31,Admin Block,paper,2.3,True
+2024-02-01,Cafeteria,food,4.0,True
+2024-02-01,Cafeteria,plastic,1.3,True
+2024-02-01,Lab Block,e-waste,0.5,True
+2024-02-01,Classroom Block,paper,2.7,True
+2024-02-01,Hostel B,food,2.0,True
+2024-02-02,Cafeteria,food,5.4,True
+2024-02-02,Library,paper,1.4,True
+2024-02-02,Sports Ground,general,2.1,False
+2024-02-02,Hostel A,plastic,0.9,True
+2024-02-02,Cafeteria,food,3.8,True

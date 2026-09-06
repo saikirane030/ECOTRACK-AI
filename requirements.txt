@@ -1,0 +1,11 @@
+
+# EcoTrack AI – Python dependencies
+# Install with:  pip install -r requirements.txt
+
+streamlit>=1.35.0          # Web UI framework
+pandas>=2.0.0              # CSV processing and data analysis
+plotly>=5.18.0             # Interactive charts
+Pillow>=10.0.0             # Image loading and encoding (PIL)
+ibm-watsonx-ai>=1.1.0      # Official IBM watsonx.ai Python SDK
+python-dotenv>=1.0.0       # Loads .env file into environment variables
+requests>=2.31.0           # HTTP calls (used by the IBM SDK internally)

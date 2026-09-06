@@ -1,0 +1,24 @@
+﻿# EcoTrack AI - .gitignore
+# -------------------------------------------------------
+# Files that must NOT be committed to GitHub
+
+# Your IBM API key and project ID live here - never commit
+.env
+
+# Python bytecode cache - auto-generated, not needed in repo
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment folders
+venv/
+.venv/
+env/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# IDE config
+.vscode/
+.idea/
