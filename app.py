@@ -221,11 +221,6 @@ with tab1:
                         st.error(f"Could not analyse the image: {e}")
 
             else:
-                # Demo Mode – Vision AI not configured
-                st.caption(
-                    "🔶 Demo Mode — IBM Granite Vision is not configured. "
-                    "Select a predefined example below. This is not real AI inference."
-                )
                 idx = st.selectbox(
                     "Select an example waste item",
                     range(len(DEMO_EXAMPLES)),
